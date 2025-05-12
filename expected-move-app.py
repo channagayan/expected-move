@@ -3,7 +3,6 @@ import yfinance as yf
 from datetime import datetime
 import pandas as pd
 from datetime import date
-import altair as alt
 import pandas as pd
 
 
@@ -81,10 +80,6 @@ def calculate_expected_move(symbol, date_str):
         st.write(f"**Expected Move**: ${expected_move:,.2f}")
         st.success(f"📊 Expected Up Price: **${expected_up_price:,.2f}**")
         st.error(f"📊 Expected Down Price: **${expected_down_price:,.2f}**")
-
-
-
-
 
     except Exception as e:
         st.error(f"Calculation error: {e}")
