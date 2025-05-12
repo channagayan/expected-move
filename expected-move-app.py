@@ -11,13 +11,14 @@ st.set_page_config(page_title="Expected Move Calculator")
 st.title("📈 Stock Expected Move Calculator")
 
 st.markdown("""
-### 📢 Disclosure
-
-This tool provides estimated price movements based on publicly available options data.  
-It is intended for **educational purposes only** and should not be construed as financial advice.  
-You are solely responsible for your trading decisions.  
-**Use this information at your own risk.**
-""")
+<div style='font-size: 12px; color: #555;'>
+    <strong>Disclosure:</strong><br>
+    This tool provides estimated price movements based on publicly available options data.<br>
+    It is intended for <strong>educational purposes only</strong> and should not be construed as financial advice.<br>
+    You are solely responsible for your trading decisions.<br>
+    <strong>Use this information at your own risk.</strong>
+</div>
+""", unsafe_allow_html=True)
 
 stock_symbol = st.text_input("Enter Stock Symbol (e.g., AAPL)", "AAPL").upper()
 exp_date = st.date_input("Select Option Expiration Date", value=date.today())
