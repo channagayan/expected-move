@@ -79,8 +79,8 @@ def calculate_expected_move(symbol, date_str):
         st.subheader("Expected Move Details:")
         st.write(f"**Current Price**: ${spot:,.2f}")
         st.write(f"**Expected Move**: ${expected_move:,.2f}")
-        st.write(f"**Expected Up Price**: ${expected_up_price:,.2f}")
-        st.write(f"**Expected Down Price**: ${expected_down_price:,.2f}")
+        st.write(f"📊 Expected Up Price: **${expected_up_price:,.2f}**")
+        st.write(f"📊 Expected Down Price: **${expected_down_price:,.2f}**")
 
 
 
