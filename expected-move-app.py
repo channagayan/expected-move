@@ -70,21 +70,28 @@ def calculate_expected_move(symbol, date_str):
         st.write(f"ATM Straddle: ${straddle:.2f}")
         st.write(f"1st OTM Strangle (Call {otm_call_strike}, Put {otm_put_strike}): ${strangle:.2f}")
         st.success(f"📊 Expected Move ≈ **${expected_move}**")
-        # Create chart data
+        # Create DataFrame with color labels
         df = pd.DataFrame({
-            'Price Point': ['Lower Bound', 'Current Price', 'Upper Bound'],
-            'Value': [spot - expected_move, spot, spot + expected_move]
+            'Step': ['Current Price', 'Expected Move Down', 'Expected Move Up'],
+            'Price': [spot, spot - expected_move, spot + expected_move],
+            'Color': ['Current', 'Down', 'Up']
         })
-
-        chart = alt.Chart(df).mark_line(point=True).encode(
-            x=alt.X('Price Point', sort=['Lower Bound', 'Current Price', 'Upper Bound']),
-            y='Value',
-            tooltip=['Price Point', 'Value']
+        
+        # Define colors for each point
+        color_scale = alt.Scale(domain=['Current', 'Down', 'Up'],
+                                range=['#1f77b4', '#d62728', '#2ca02c'])  # blue, red, green
+        
+        chart = alt.Chart(df).mark_line(point=alt.OverlayMarkDef(filled=True, size=100)).encode(
+            x=alt.X('Step', title=''),
+            y=alt.Y('Price', title='Price ($)'),
+            color=alt.Color('Color', scale=color_scale, legend=None),
+            tooltip=['Step', 'Price']
         ).properties(
-            title='Expected Move Range'
+            title='Expected Move Relative to Current Price'
         )
         
         st.altair_chart(chart, use_container_width=True)
+
 
     except Exception as e:
         st.error(f"Calculation error: {e}")
