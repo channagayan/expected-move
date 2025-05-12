@@ -94,6 +94,7 @@ def calculate_expected_move(symbol, date_str):
 
 
 
+
     except Exception as e:
         st.error(f"Calculation error: {e}")
 
