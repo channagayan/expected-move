@@ -93,6 +93,7 @@ def calculate_expected_move(symbol, date_str):
         st.altair_chart(chart, use_container_width=True)
 
 
+
     except Exception as e:
         st.error(f"Calculation error: {e}")
 
