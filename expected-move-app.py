@@ -8,7 +8,7 @@ import pandas as pd
 
 st.set_page_config(page_title="Expected Move Calculator")
 
-st.title("📈 Stock Expected Move Calculator (Binary Event)")
+st.title("📈 Stock Expected Move Calculator")
 
 stock_symbol = st.text_input("Enter Stock Symbol (e.g., AAPL)", "AAPL").upper()
 exp_date = st.date_input("Select Option Expiration Date", value=date.today())
