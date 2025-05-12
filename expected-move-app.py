@@ -3,6 +3,8 @@ import yfinance as yf
 from datetime import datetime
 import pandas as pd
 from datetime import date
+import altair as alt
+import pandas as pd
 
 
 st.set_page_config(page_title="Expected Move Calculator")
