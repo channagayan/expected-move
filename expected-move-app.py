@@ -2,14 +2,18 @@ import streamlit as st
 import yfinance as yf
 from datetime import datetime
 import pandas as pd
+from datetime import date
+
 
 st.set_page_config(page_title="Expected Move Calculator")
 
 st.title("📈 Stock Expected Move Calculator (Binary Event)")
 
-# Input fields
 stock_symbol = st.text_input("Enter Stock Symbol (e.g., AAPL)", "AAPL").upper()
-expiration_date = st.text_input("Enter Option Expiration Date (YYYY-MM-DD)", "2025-05-17")
+exp_date = st.date_input("Select Option Expiration Date", value=date.today())
+
+# Convert date to string format for yfinance
+expiration_date = exp_date.strftime('%Y-%m-%d')
 
 def find_nearest_strike(strikes, spot):
     return min(strikes, key=lambda x: abs(x - spot))
