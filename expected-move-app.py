@@ -68,6 +68,21 @@ def calculate_expected_move(symbol, date_str):
         st.write(f"ATM Straddle: ${straddle:.2f}")
         st.write(f"1st OTM Strangle (Call {otm_call_strike}, Put {otm_put_strike}): ${strangle:.2f}")
         st.success(f"📊 Expected Move ≈ **${expected_move}**")
+        # Create chart data
+        df = pd.DataFrame({
+            'Price Point': ['Lower Bound', 'Current Price', 'Upper Bound'],
+            'Value': [spot - expected_move, spot, spot + expected_move]
+        })
+
+        chart = alt.Chart(df).mark_line(point=True).encode(
+            x=alt.X('Price Point', sort=['Lower Bound', 'Current Price', 'Upper Bound']),
+            y='Value',
+            tooltip=['Price Point', 'Value']
+        ).properties(
+            title='Expected Move Range'
+        )
+        
+        st.altair_chart(chart, use_container_width=True)
 
     except Exception as e:
         st.error(f"Calculation error: {e}")
